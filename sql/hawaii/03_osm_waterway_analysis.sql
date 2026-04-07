@@ -9,18 +9,21 @@
 -- - Calculate total length, count, and average length of waterways
 -- - Group by island
 -- - Order results by total waterway length (largest first)
+-- - Include geom column for spatial visualization in GeoPandas
 
 -- Expected Output:
 -- - island_name
 -- - total_waterway_length_km
 -- - number_of_waterways
 -- - avg_waterway_length_km
+-- - geom
 
 SELECT
     p.name AS island_name,
     SUM(ST_Length(w.geom::geography)) / 1000 AS total_waterway_length_km,
     COUNT(*) AS number_of_waterways,
-    AVG(ST_Length(w.geom::geography)) / 1000 AS avg_waterway_length_km
+    AVG(ST_Length(w.geom::geography)) / 1000 AS avg_waterway_length_km,
+    p.geom
 FROM
     places_a AS p
 JOIN
@@ -28,6 +31,6 @@ JOIN
 WHERE
     p.fclass = 'island'
 GROUP BY
-    p.name
+    p.name, p.geom
 ORDER BY
     total_waterway_length_km DESC;

@@ -11,9 +11,11 @@
 -- - Convert square meters to square kilometers (divide by 1,000,000)
 -- - Calculate road density as total road length divided by island area
 -- - Order results by road density (highest first)
+-- - Include geom column for spatial visualization in GeoPandas
 
 -- Expected Output:
 -- - island_name
+-- - geom
 -- - island_area_sq_km
 -- - total_road_length_km
 -- - total_waterway_length_km
@@ -65,6 +67,7 @@ island_water_bodies AS (
 )
 SELECT
     a.island_name,
+    a.geom,
     a.island_area_sq_km,
     COALESCE(r.total_road_length_km, 0) AS total_road_length_km,
     COALESCE(w.total_waterway_length_km, 0) AS total_waterway_length_km,

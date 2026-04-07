@@ -6,6 +6,7 @@
 -- - Use ST_Area(geom::geography) for accurate measurements on WGS84
 -- - Convert square meters to square kilometers (divide by 1,000,000)
 -- - Order results by area (largest first)
+-- - Include geom column for spatial visualization in GeoPandas
 
 -- Expected Output:
 -- - name
@@ -13,7 +14,8 @@
 
 SELECT
     name,
-    ST_Area(geom::geography) / 1000000 AS area_sq_km
+    ST_Area(geom::geography) / 1000000 AS area_sq_km,
+    geom
 FROM
     places_a
 WHERE

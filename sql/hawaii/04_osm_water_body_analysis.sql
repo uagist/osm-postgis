@@ -10,6 +10,7 @@
 -- - Count the number of water bodies per island
 -- - Identify the largest water body on each island
 -- - Order results by total water body area (largest first)
+-- - Include geom column for spatial visualization in GeoPandas
 
 -- Expected Output:
 -- - island_name
@@ -17,10 +18,12 @@
 -- - number_of_water_bodies
 -- - largest_water_body_name
 -- - largest_water_body_area_sq_km
+-- - geom
 
 WITH island_water_bodies AS (
     SELECT
         p.name AS island_name,
+        p.geom,
         w.name AS water_body_name,
         ST_Area(w.geom::geography) / 1000000 AS water_body_area_sq_km
     FROM
@@ -33,13 +36,13 @@ WITH island_water_bodies AS (
 island_summary AS (
     SELECT
         island_name,
+        geom,
         SUM(water_body_area_sq_km) AS total_water_body_area_sq_km,
-        COUNT(*) AS number_of_water_bodies,
-        MAX(water_body_area_sq_km) AS largest_water_body_area_sq_km
+        COUNT(*) AS number_of_water_bodies
     FROM
         island_water_bodies
     GROUP BY
-        island_name
+        island_name, geom
 ),
 largest_water_bodies AS (
     SELECT DISTINCT ON (island_name)
@@ -56,7 +59,8 @@ SELECT
     s.total_water_body_area_sq_km,
     s.number_of_water_bodies,
     l.largest_water_body_name,
-    l.largest_water_body_area_sq_km
+    l.largest_water_body_area_sq_km,
+    s.geom
 FROM
     island_summary s
 JOIN

@@ -10,16 +10,19 @@
 -- - Convert square meters to square kilometers (divide by 1,000,000)
 -- - Group by island
 -- - Order results by total road length (largest first)
+-- - Include geom column for spatial visualization in GeoPandas
 
 -- Expected Output:
 -- - island_name
 -- - total_road_length_km
 -- - island_area_sq_km
+-- - geom
 
 SELECT
     p.name AS island_name,
     SUM(ST_Length(r.geom::geography)) / 1000 AS total_road_length_km,
-    ST_Area(p.geom::geography) / 1000000 AS island_area_sq_km
+    ST_Area(p.geom::geography) / 1000000 AS island_area_sq_km,
+    p.geom
 FROM
     places_a AS p
 JOIN
