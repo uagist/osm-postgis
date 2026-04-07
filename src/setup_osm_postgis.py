@@ -13,10 +13,11 @@ import os
 import psycopg2
 import requests
 import subprocess
+import zipfile
 from pathlib import Path
 from typing import Optional
 
-# Function: Setup PostGIS + Load OSM Data
+# Function: Setup PostGIS + Load OSM Shapefile Data
 
 def setup_postgis_osm(
     osm_url: str,
@@ -28,17 +29,18 @@ def setup_postgis_osm(
     data_dir: Optional[Path] = None
 ) -> None:
     """
-    Create a PostGIS database and load OpenStreetMap data.
+    Create a PostGIS database and load Geofabrik shapefile data.
 
     This function performs a complete workflow:
     - Connect to PostgreSQL
     - Create a new database
     - Enable PostGIS extension
-    - Download OSM data from Geofabrik
-    - Load OSM data into PostGIS using osm2pgsql
+    - Download shapefile data from Geofabrik
+    - Unzip shapefile data
+    - Load shapefiles into PostGIS using shp2pgsql
 
     Args:
-        osm_url: URL to OSM .pbf file (Geofabrik download)
+        osm_url: URL to Geofabrik shapefile ZIP
         db_name: Name of the database to create
         user: PostgreSQL username
         password: PostgreSQL password
@@ -51,18 +53,19 @@ def setup_postgis_osm(
 
     Example:
         >>> setup_postgis_osm(
-        ...     osm_url="https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf", db_name="hawaii_db"
+        ...     osm_url="https://download.geofabrik.de/north-america/us/hawaii-latest-free.shp.zip", db_name="hawaii"
         ... )
     """
 
     # TODO: Implement this function
     # Step 1: Setup data directory
-    # Step 2: Download OSM data
+    # Step 2: Download shapefile ZIP data
     # Step 3: Connect to PostgreSQL (default database)
     # Step 4: Create the working database
     # Step 5: Connect to the new database
     # Step 6: Enable PostGIS
-    # Step 7: Load OSM data with osm2pgsql
-    # Step 8: Close connections
+    # Step 7: Unzip shapefile data
+    # Step 8: Load shapefiles into PostGIS using shp2pgsql
+    # Step 9: Close connections
 
     raise NotImplementedError("setup_postgis_osm not yet implemented")
