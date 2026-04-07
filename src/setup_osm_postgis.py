@@ -9,11 +9,12 @@ Use the notebook to build and run the workflow.
 ✅ Function: setup_postgis_osm() → notebooks/setup_osm_postgis.ipynb
 """
 
+import os
 import psycopg2
+import requests
 import subprocess
 from pathlib import Path
 from typing import Optional
-
 
 # Function: Setup PostGIS + Load OSM Data
 
@@ -50,7 +51,7 @@ def setup_postgis_osm(
 
     Example:
         >>> setup_postgis_osm(
-        ...     osm_url="https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf"
+        ...     osm_url="https://download.geofabrik.de/north-america/us/hawaii-latest.osm.pbf", db_name="hawaii_db"
         ... )
     """
 
