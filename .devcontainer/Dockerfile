@@ -7,4 +7,5 @@ RUN apt-get update && apt-get install -y \
     libproj-dev \
     postgresql-client \
     postgis \
+    osm2pgsql \
     && rm -rf /var/lib/apt/lists/*
