@@ -6,7 +6,7 @@ Use the notebook to build and run the workflow.
 
 📋 FUNCTION TO IMPLEMENT IN THIS FILE:
 =====================================
-✅ Function: setup_postgis_osm() → notebooks/setup_osm_postgis.ipynb
+✅ Function: setup_osm_postgis() → notebooks/setup_osm_postgis.ipynb
 """
 
 import os
@@ -19,7 +19,7 @@ from typing import Optional
 
 # Function: Setup PostGIS + Load OSM Shapefile Data
 
-def setup_postgis_osm(
+def setup_osm_postgis(
     osm_url: str,
     db_name: str = "osm_db",
     user: str = "postgres",
@@ -52,7 +52,7 @@ def setup_postgis_osm(
         None
 
     Example:
-        >>> setup_postgis_osm(
+        >>> setup_osm_postgis(
         ...     osm_url="https://download.geofabrik.de/north-america/us/hawaii-latest-free.shp.zip", db_name="hawaii"
         ... )
     """
@@ -68,4 +68,6 @@ def setup_postgis_osm(
     # Step 8: Load shapefiles into PostGIS using shp2pgsql
     # Step 9: Close connections
 
-    raise NotImplementedError("setup_postgis_osm not yet implemented")
+    raise NotImplementedError(
+    "setup_osm_postgis() is not implemented. Complete this function before running it."
+)
