@@ -14,7 +14,8 @@ dependencies = [
     "ipykernel>=7.2.0,<8",
     "matplotlib>=3.10.8,<4",
     "requests>=2,<3",
-    "psycopg2-binary>=2.9,<3"
+    "psycopg2-binary>=2.9,<3",
+    "sqlalchemy>=2.0.49,<3",
 ]
 
 [tool.uv]
