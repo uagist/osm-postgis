@@ -68,6 +68,4 @@ def setup_osm_postgis(
     # Step 8: Load shapefiles into PostGIS using shp2pgsql
     # Step 9: Close connections
 
-    raise NotImplementedError(
-    "setup_osm_postgis() is not implemented. Complete this function before running it."
-)
+    raise NotImplementedError("setup_osm_postgis() is not implemented. Complete this function before running it.")
