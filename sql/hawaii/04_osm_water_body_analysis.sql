@@ -38,7 +38,8 @@ island_summary AS (
         island_name,
         geom,
         SUM(water_body_area_sq_km) AS total_water_body_area_sq_km,
-        COUNT(*) AS number_of_water_bodies
+        COUNT(*) AS number_of_water_bodies,
+        ST_Area(geom::geography) / 1000000 AS island_area_sq_km
     FROM
         island_water_bodies
     GROUP BY
@@ -60,6 +61,7 @@ SELECT
     s.number_of_water_bodies,
     l.largest_water_body_name,
     l.largest_water_body_area_sq_km,
+    s.island_area_sq_km,
     s.geom
 FROM
     island_summary s
